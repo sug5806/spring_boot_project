@@ -1,5 +1,6 @@
 package com.my.my_project.service;
 
+import com.my.my_project.api_model.ApiUser;
 import com.my.my_project.domain.User;
 import com.my.my_project.repository.UserRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -26,14 +27,24 @@ class UserServiceTest {
     @Test
     @DisplayName("유저 생성 service")
     public void create() {
-        User user = User.builder()
-                .userId("root")
+        ApiUser apiUser = ApiUser.builder()
+                .id("root")
                 .password("1234")
                 .build();
 
-        userService.create(user);
+        User user = User.builder()
+                .userId(apiUser.getId())
+                .password(apiUser.getPassword())
+                .email(apiUser.getEmail())
+                .build();
 
-        userRepository.save(user);
+        //given
+        given(userService.create(apiUser)).willReturn(user);
+        //when
+        User readUser = userService.create(apiUser);
+        //then
+
+        assertThat("root").isEqualTo(readUser.getUserId());
     }
 
     @Test

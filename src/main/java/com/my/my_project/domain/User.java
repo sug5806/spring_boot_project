@@ -1,9 +1,11 @@
 package com.my.my_project.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 
@@ -15,7 +17,7 @@ import javax.validation.constraints.NotEmpty;
 @Entity
 public class User {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
     @NonNull
@@ -23,6 +25,7 @@ public class User {
     private String userId;
     @NonNull
     @NotEmpty
+    @JsonIgnore
     private String password;
 
     private String email;
