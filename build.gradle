@@ -30,7 +30,7 @@ dependencies {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
     testCompile("org.assertj:assertj-core:3.11.1")
-    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.47'
+    compile 'mysql:mysql-connector-java'
 }
 
 test {

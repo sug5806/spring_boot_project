@@ -1,24 +1,22 @@
 package com.my.my_project.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Login {
-    @Id
-    @GeneratedValue()
     private String id;
     private String password;
 
-    public String login() {
-        return "success";
+    public User login() {
+        return User.builder()
+                .userId("root")
+                .password("1234")
+                .build();
     }
 }

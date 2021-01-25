@@ -1,6 +1,7 @@
 package com.my.my_project.controller;
 
 import com.my.my_project.domain.Login;
+import com.my.my_project.domain.User;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -8,10 +9,20 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 class LoginControllerTest {
     @Test
     public void LoginRequestTest() {
-        Login login = new Login("id", "password");
+        Login login = Login.builder()
+                .id("root")
+                .password("1234")
+                .build();
 
-        String message = login.login();
+        User user = login.login();
 
-        assertThat("success").isEqualTo(message);
+        assertThat(user).isNotNull();
+        assertThat("root").isEqualTo(user.getUserId());
+        assertThat("1234").isEqualTo(user.getPassword());
+    }
+
+    @Test
+    public void LogoutTest() {
+
     }
 }
