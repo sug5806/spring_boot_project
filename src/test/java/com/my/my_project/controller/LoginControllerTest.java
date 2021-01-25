@@ -20,9 +20,4 @@ class LoginControllerTest {
         assertThat("root").isEqualTo(user.getUserId());
         assertThat("1234").isEqualTo(user.getPassword());
     }
-
-    @Test
-    public void LogoutTest() {
-
-    }
 }
